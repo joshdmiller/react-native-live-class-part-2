@@ -7,13 +7,19 @@ import rs from 'react-stamp';
 import {
   StyleSheet,
   Text,
-  View
+  View,
+  StatusBar,
 } from 'react-native';
 
 export default ( React : Object, ...behaviours : Array<Object> )  => rs( React ).compose({
   render () {
     return (
       <View style={styles.container}>
+        <StatusBar
+          translucent={true}
+          backgroundColor="rgba(0,0,0,0.3)"
+          barStyle="default"
+        />
         <Text style={styles.welcome}>
           Welcome to React Native!
         </Text>
