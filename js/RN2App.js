@@ -11,6 +11,10 @@ import {
   StatusBar,
 } from 'react-native';
 
+import RN2NavigatorFactory from './RN2Navigator';
+
+const RN2Navigator = RN2NavigatorFactory( React );
+
 export default ( React : Object, ...behaviours : Array<Object> )  => rs( React ).compose({
   render () {
     return (
@@ -20,14 +24,7 @@ export default ( React : Object, ...behaviours : Array<Object> )  => rs( React )
           backgroundColor="rgba(0,0,0,0.3)"
           barStyle="default"
         />
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          On iOS, press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu.{'\n'}
-          On Android, press Cmd+M for dev menu.
-        </Text>
+        <RN2Navigator />
       </View>
     );
   },
@@ -36,19 +33,6 @@ export default ( React : Object, ...behaviours : Array<Object> )  => rs( React )
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
   },
 });
 
