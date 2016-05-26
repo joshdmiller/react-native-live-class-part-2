@@ -10,6 +10,10 @@
     "react-native": "^0.26.2"
   },
   "devDependencies": {
-    "react-stamp": "^0.5.0"
+    "react-redux": "^4.4.5",
+    "react-stamp": "^0.5.0",
+    "redux": "^3.5.2",
+    "redux-logger": "^2.6.1",
+    "redux-thunk": "^2.1.0"
   }
 }
