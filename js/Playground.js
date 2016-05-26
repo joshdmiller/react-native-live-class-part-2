@@ -8,7 +8,7 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import Component from './demos/flex';
+import Component from './demos/Button';
 
 export default ( React : Object, ...behaviours : Array<Object> ) => rs( React ).compose({
   init () {
@@ -35,7 +35,7 @@ export default ( React : Object, ...behaviours : Array<Object> ) => rs( React ).
 }, ...behaviours );
 
 export const TestFactory = ( React ) => ({ render }) => (
-  <View style={{ flex: 1 }}>
+  <View style={{ flex: 1, justifyContent: 'space-around' }}>
     { render() }
   </View>
 );
