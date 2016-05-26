@@ -11,11 +11,29 @@ import {
   TouchableHighlight,
 } from 'react-native';
 import Platform from 'Platform';
+import BackAndroid from 'BackAndroid';
 
 export default ( React : Object, ...behaviours : Array<Object> )  => rs( React ).compose({
+  init () {
+    this._handleBack = this._handleBack.bind( this );
+  },
+
+  componentWillMount () {
+    if ( Platform.OS === 'android' ) {
+      BackAndroid.addEventListener( 'hardwareBackPress', this._handleBack );
+    }
+  },
+
+  componentWillUnmount () {
+    if ( Platform.OS === 'android' ) {
+      BackAndroid.removeEventListener( 'hardwareBackPress', this._handleBack );
+    }
+  },
+
   render () {
     return (
       <Navigator
+        ref="navigator"
         style={styles.container}
         initialRoute={{ id: 0 }}
         renderScene={( ...a ) => this.renderScene( ...a )}
@@ -32,6 +50,17 @@ export default ( React : Object, ...behaviours : Array<Object> )  => rs( React )
 
   _goto ( navigator, id ) {
     navigator.push({ id });
+  },
+
+  _handleBack () {
+    const { navigator } = this.refs;
+
+    if ( navigator && navigator.getCurrentRoutes().length > 1 ) {
+      navigator.pop();
+      return true;
+    }
+
+    return false;
   },
 
   renderScene ( { id }, navigator ) {
