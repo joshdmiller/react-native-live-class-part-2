@@ -45,10 +45,6 @@ export const TodosFactory = ( React : Object ) => {
       this._setTodos( nextProps.todos );
     },
 
-    componentDidMount () {
-      this.props.seedTodos();
-    },
-
     render () {
       const { dataSource } = this.state;
       const { rmTodo } = this.props;
@@ -96,10 +92,6 @@ export function mapStateToProps ( state: Object ) {
 
 export function mapDispatchToProps ( dispatch ) {
   return {
-    seedTodos: () => dispatch({
-      type: 'SEED_TODOS',
-    }),
-
     addTodo: title => dispatch({
       type: 'ADD_TODO',
       title

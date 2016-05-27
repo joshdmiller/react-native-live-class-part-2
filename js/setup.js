@@ -12,11 +12,16 @@ export default function setup () : React.Component {
   const Root = reactStamp( React ).compose({
     init () {
       this.state = {
-        store: configureStore(),
+        hydrating: true,
+        store: configureStore( () => this.setState({ hydrating: false }) ),
       };
     },
 
     render () {
+      if ( this.state.hydrating ) {
+        return null;
+      }
+
       return (
         <Provider store={this.state.store}>
           <RN2App />

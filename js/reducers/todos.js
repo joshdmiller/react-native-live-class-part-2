@@ -2,17 +2,6 @@
   * @flow
   */
 
-const defaultTodos = [
-  {
-    id: 0,
-    title: 'Learn React Native',
-  },
-  {
-    id: 1,
-    title: 'Integrate Redux',
-  },
-];
-
 export default ( state : Array<Object> = [], action: Object ) => {
   const { type, ...props } = action;
 
@@ -22,8 +11,6 @@ export default ( state : Array<Object> = [], action: Object ) => {
       return [ ...state, { ...props, id } ];
     case 'REMOVE_TODO':
       return state.filter( t => t.id !== action.id );
-    case 'SEED_TODOS':
-      return [ ...defaultTodos ];
     default:
       return state;
   }
