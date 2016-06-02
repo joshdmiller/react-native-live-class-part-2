@@ -7,6 +7,8 @@ import {
   View,
   Text,
   Alert,
+  ToastAndroid,
+  Platform,
 } from 'react-native';
 import stylesheet from '../stylesheet';
 import ButtonFactory from '../demos/Button';
@@ -66,12 +68,20 @@ export default ( React : Object ) => {
       );
     },
 
+    _toast () {
+      ToastAndroid.show( 'Snack, anyone?', ToastAndroid.SHORT );
+    },
+
     render () {
       return (
         <View style={styles.container}>
           <Button label='Info' primary={true} onPress={e => this._info() } />
           <Button label='Prompt' onPress={e => this._prompt() } />
           <Button label='Prompt with Neutral' onPress={e => this._promptNeutral() } />
+
+          { Platform.OS === 'android' ? 
+            <Button label='Show a Toast' onPress={e => this._toast() } />
+            : null }
         </View>
       );
     },
