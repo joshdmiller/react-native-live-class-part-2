@@ -7,6 +7,7 @@ import {
   View,
   Text,
   Image,
+  Platform,
 } from 'react-native';
 import stylesheet from '../stylesheet';
 import { ImagePickerManager } from 'NativeModules';
@@ -41,7 +42,7 @@ export default ( React : Object ) => {
 
       if ( image ) {
         source = {
-          uri: image.uri.replace( 'file://', '' ),
+          uri: Platform.OS === 'ios' ? image.uri.replace( 'file://', '' ) : image.uri,
           isStatic: true
         };
       }
