@@ -28,10 +28,28 @@ export default ( React : Object ) => {
       );
     },
 
+    _prompt () {
+      Alert.alert(
+        'Pick One',
+        'Choose your own adventure...',
+        [
+          {
+            text: 'Go back!',
+            onPress: () => console.warn( 'go back' ),
+          },
+          {
+            text: 'Enter the dungeon',
+            onPress: () => console.warn( 'enter the dungeon' ),
+          },
+        ]
+      );
+    },
+
     render () {
       return (
         <View style={styles.container}>
           <Button label='Info' primary={true} onPress={e => this._info() } />
+          <Button label='Prompt' onPress={e => this._prompt() } />
         </View>
       );
     },
