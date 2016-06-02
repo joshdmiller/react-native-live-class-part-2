@@ -16,12 +16,14 @@ import TodosFactory from './routes/Todos';
 import GeolocationFactory from './routes/Geolocation';
 import ImagePickFactory from './routes/ImagePick';
 import AlertsFactory from './routes/Alerts';
+import AnimationFactory from './routes/Animation';
 
 export default ( React : Object, ...behaviours : Array<Object> )  => {
   const Todos = TodosFactory( React );
   const Geolocation = GeolocationFactory( React );
   const ImagePick = ImagePickFactory( React );
   const Alerts = AlertsFactory( React );
+  const Animation = AnimationFactory( React );
 
   return rs( React ).compose({
     init () {
@@ -45,7 +47,7 @@ export default ( React : Object, ...behaviours : Array<Object> )  => {
         <Navigator
           ref="navigator"
           style={styles.container}
-          initialRoute={{ id: 'imagepick' }}
+          initialRoute={{ id: 'animation' }}
           renderScene={( ...a ) => this.renderScene( ...a )}
           configureScene={route => {
             if ( Platform.OS === 'android' ) {
@@ -86,6 +88,9 @@ export default ( React : Object, ...behaviours : Array<Object> )  => {
           break;
         case 'alerts':
           return <Alerts />;
+          break;
+        case 'animation':
+          return <Animation />;
           break;
         default:
           return null;
