@@ -45,11 +45,33 @@ export default ( React : Object ) => {
       );
     },
 
+    _promptNeutral () {
+      Alert.alert(
+        'A Little More Complex',
+        'Would you like to fight back?',
+        [
+          {
+            text: 'Maybe Later...',
+            onPress: () => console.warn( 'indecision will kill you' ),
+          },
+          {
+            text: 'Nope',
+            onPress: () => console.warn( 'weak or prudent?' ),
+          },
+          {
+            text: 'Of course!',
+            onPress: () => console.warn( 'make it so!' ),
+          },
+        ]
+      );
+    },
+
     render () {
       return (
         <View style={styles.container}>
           <Button label='Info' primary={true} onPress={e => this._info() } />
           <Button label='Prompt' onPress={e => this._prompt() } />
+          <Button label='Prompt with Neutral' onPress={e => this._promptNeutral() } />
         </View>
       );
     },
