@@ -14,12 +14,14 @@ import Platform from 'Platform';
 import BackAndroid from 'BackAndroid';
 import TodosFactory from './routes/Todos';
 import GeolocationFactory from './routes/Geolocation';
-import ImagePickFactory from './routes/ImagePick.js'
+import ImagePickFactory from './routes/ImagePick';
+import AlertsFactory from './routes/Alerts';
 
 export default ( React : Object, ...behaviours : Array<Object> )  => {
   const Todos = TodosFactory( React );
   const Geolocation = GeolocationFactory( React );
   const ImagePick = ImagePickFactory( React );
+  const Alerts = AlertsFactory( React );
 
   return rs( React ).compose({
     init () {
@@ -43,7 +45,7 @@ export default ( React : Object, ...behaviours : Array<Object> )  => {
         <Navigator
           ref="navigator"
           style={styles.container}
-          initialRoute={{ id: 'imagepick' }}
+          initialRoute={{ id: 'alerts' }}
           renderScene={( ...a ) => this.renderScene( ...a )}
           configureScene={route => {
             if ( Platform.OS === 'android' ) {
@@ -81,6 +83,9 @@ export default ( React : Object, ...behaviours : Array<Object> )  => {
           break;
         case 'imagepick':
           return <ImagePick />;
+          break;
+        case 'alerts':
+          return <Alerts />;
           break;
         default:
           return null;
