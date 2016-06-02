@@ -12,6 +12,10 @@ import {
 import { connect } from 'react-redux';
 import TodoFactory from './Todo';
 import stylesheet from '../stylesheet';
+import {
+  createTodo,
+  removeTodo,
+} from '../actions/todos';
 
 export const TodosFactory = ( React : Object ) => {
   const Todo = TodoFactory( React );
@@ -92,15 +96,8 @@ export function mapStateToProps ( state: Object ) {
 
 export function mapDispatchToProps ( dispatch ) {
   return {
-    addTodo: title => dispatch({
-      type: 'ADD_TODO',
-      title
-    }),
-
-    rmTodo: id => dispatch({
-      type: 'REMOVE_TODO',
-      id
-    }),
+    addTodo: title => dispatch( createTodo( title ) ),
+    rmTodo: id => dispatch( removeTodo( id ) ),
   };
 }
 

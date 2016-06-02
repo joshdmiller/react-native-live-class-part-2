@@ -12,8 +12,7 @@ export default function setup () : React.Component {
   const Root = reactStamp( React ).compose({
     init () {
       this.state = {
-        hydrating: true,
-        store: configureStore( () => this.setState({ hydrating: false }) ),
+        store: configureStore(),
       };
     },
 
