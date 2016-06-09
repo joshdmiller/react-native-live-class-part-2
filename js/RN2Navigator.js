@@ -13,6 +13,7 @@ import {
 import Platform from 'Platform';
 import BackAndroid from 'BackAndroid';
 import TodosFactory from './routes/Todos';
+import WSTodosFactory from './routes/WSTodos';
 import GeolocationFactory from './routes/Geolocation';
 import ImagePickFactory from './routes/ImagePick';
 import AlertsFactory from './routes/Alerts';
@@ -20,6 +21,7 @@ import AnimationFactory from './routes/Animation';
 
 export default ( React : Object, ...behaviours : Array<Object> )  => {
   const Todos = TodosFactory( React );
+  const WSTodos = WSTodosFactory( React );
   const Geolocation = GeolocationFactory( React );
   const ImagePick = ImagePickFactory( React );
   const Alerts = AlertsFactory( React );
@@ -47,7 +49,7 @@ export default ( React : Object, ...behaviours : Array<Object> )  => {
         <Navigator
           ref="navigator"
           style={styles.container}
-          initialRoute={{ id: 'animation' }}
+          initialRoute={{ id: 'wstodos' }}
           renderScene={( ...a ) => this.renderScene( ...a )}
           configureScene={route => {
             if ( Platform.OS === 'android' ) {
@@ -77,6 +79,9 @@ export default ( React : Object, ...behaviours : Array<Object> )  => {
 
     renderScene ( { id }, navigator ) {
       switch ( id ) {
+        case 'wstodos':
+          return <WSTodos />;
+          break;
         case 'todos':
           return <Todos />;
           break;
