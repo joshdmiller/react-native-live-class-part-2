@@ -9,9 +9,12 @@ import {
   Alert,
   ToastAndroid,
   Platform,
+  NativeModules,
 } from 'react-native';
 import stylesheet from '../stylesheet';
 import ButtonFactory from '../demos/Button';
+
+const SnackbarAndroid = NativeModules.SnackbarAndroid;
 
 export default ( React : Object ) => {
   const Button = ButtonFactory( React );
@@ -72,6 +75,10 @@ export default ( React : Object ) => {
       ToastAndroid.show( 'Snack, anyone?', ToastAndroid.SHORT );
     },
 
+    _snackbar () {
+      SnackbarAndroid.show( 'Native module!', SnackbarAndroid.INDEFINITE );
+    },
+
     render () {
       return (
         <View style={styles.container}>
@@ -81,6 +88,10 @@ export default ( React : Object ) => {
 
           { Platform.OS === 'android' ? 
             <Button label='Show a Toast' onPress={e => this._toast() } />
+            : null }
+
+          { Platform.OS === 'android' ? 
+            <Button label='Show a Snackbar' onPress={e => this._snackbar() } />
             : null }
         </View>
       );

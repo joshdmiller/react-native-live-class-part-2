@@ -20,7 +20,7 @@ export default ( React : Object, ...behaviours : Array<Object> )  => rs( React )
     return (
       <View style={styles.container}>
         <StatusBar
-          translucent={true}
+          translucent={false}
           backgroundColor="rgba(0,0,0,0.3)"
           barStyle="default"
         />
