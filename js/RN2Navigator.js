@@ -18,6 +18,7 @@ import GeolocationFactory from './routes/Geolocation';
 import ImagePickFactory from './routes/ImagePick';
 import AlertsFactory from './routes/Alerts';
 import AnimationFactory from './routes/Animation';
+import LayoutAnimationFactory from './routes/LayoutAnimation';
 
 export default ( React : Object, ...behaviours : Array<Object> )  => {
   const Todos = TodosFactory( React );
@@ -26,6 +27,7 @@ export default ( React : Object, ...behaviours : Array<Object> )  => {
   const ImagePick = ImagePickFactory( React );
   const Alerts = AlertsFactory( React );
   const Animation = AnimationFactory( React );
+  const LayoutAnimation = LayoutAnimationFactory( React );
 
   return rs( React ).compose({
     init () {
@@ -49,7 +51,7 @@ export default ( React : Object, ...behaviours : Array<Object> )  => {
         <Navigator
           ref="navigator"
           style={styles.container}
-          initialRoute={{ id: 'alerts' }}
+          initialRoute={{ id: 'layoutanim' }}
           renderScene={( ...a ) => this.renderScene( ...a )}
           configureScene={route => {
             if ( Platform.OS === 'android' ) {
@@ -96,6 +98,9 @@ export default ( React : Object, ...behaviours : Array<Object> )  => {
           break;
         case 'animation':
           return <Animation />;
+          break;
+        case 'layoutanim':
+          return <LayoutAnimation />;
           break;
         default:
           return null;
